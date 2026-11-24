@@ -39,5 +39,5 @@ theorem PEqualNP.Outside.R_meta_2048_521
     && x6 (7 : Fin (9 : ℕ)) || x6 (6 : Fin (9 : ℕ)) && x6 (8 : Fin (9 : ℕ)) || x6 (8 : Fin (9 : ℕ)) && x6 (5 : Fin
     (9 : ℕ)) := by
   intro C hfan hfirst hsize hmin hfun
-  have hbudget := gateBudget C hfan hfirst hfun
-  exact remaining C hfan hfirst hsize hmin (by omega) hfun
+  have hbudget := (gateBudget C hfan hfirst hfun).trans_eq hsize
+  exact remaining C hfan hfirst hsize hmin (Nat.le_of_add_le_add_right hbudget) hfun
